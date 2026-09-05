@@ -1,0 +1,88 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "拾光档案",
+  "version": "1.0.3",
+  "identifier": "top.ehre.qzonearchive.securelocal",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "拾光档案 · 本地版",
+        "width": 1180,
+        "height": 760,
+        "minWidth": 760,
+        "minHeight": 560,
+        "center": true,
+        "zoomHotkeysEnabled": false,
+        "browserExtensionsEnabled": false,
+        "devtools": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost asset: http://asset.localhost; img-src 'self' data: blob: asset: http://asset.localhost; media-src 'self' blob: asset: http://asset.localhost; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'",
+      "assetProtocol": {
+        "enable": true,
+        "scope": []
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "dmg", "app"],
+    "publisher": "Ehre",
+    "category": "Utility",
+    "shortDescription": "将 QQ 空间动态、照片、视频与互动记录安全归档到本地。",
+    "longDescription": "拾光档案是一款本地 QQ 空间归档工具，可以还原并保存原始动态、照片、视频、点赞和评论，支持多账号隔离、分页浏览与断点续传。",
+    "copyright": "Copyright © 2026 Ehre",
+    "icon": [
+      "icons/shiguang/32x32.png",
+      "icons/shiguang/128x128.png",
+      "icons/shiguang/128x128@2x.png",
+      "icons/shiguang/icon.png",
+      "icons/shiguang/icon.icns",
+      "icons/shiguang/icon.ico"
+    ],
+    "linux": {
+      "appimage": {
+        "bundleMediaFramework": true
+      },
+      "deb": {
+        "depends": [
+          "libwebkit2gtk-4.1-0",
+          "libgtk-3-0",
+          "gstreamer1.0-plugins-base",
+          "gstreamer1.0-plugins-good",
+          "gstreamer1.0-plugins-bad",
+          "gstreamer1.0-plugins-ugly",
+          "gstreamer1.0-libav",
+          "fonts-noto-cjk"
+        ]
+      }
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "allowDowngrades": false,
+      "nsis": {
+        "installerIcon": "icons/shiguang/icon.ico",
+        "installMode": "currentUser",
+        "languages": ["SimpChinese", "English"],
+        "displayLanguageSelector": false,
+        "compression": "lzma",
+        "startMenuFolder": "拾光档案"
+      },
+      "wix": {
+        "upgradeCode": "24779296-0f03-5f99-83ea-fc2fcda733b9",
+        "language": ["zh-CN", "en-US"]
+      }
+    }
+  }
+}
